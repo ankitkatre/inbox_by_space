@@ -1,0 +1,21 @@
+name: Daily Commit
+
+on:
+  schedule:
+    - cron: '30 5 * * *'  # Runs every day at 5:30 AM UTC
+
+jobs:
+  commit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: One update commit
+        run: |
+          date >> daily_commit_log.txt
+          git config-- global user.name 'ankitkatre'
+          git config-- global user.email 'ankitkatre81@gmail.com'
+          git add.
+          git commit -m "🤖 Daily streak commit"
+          git push
